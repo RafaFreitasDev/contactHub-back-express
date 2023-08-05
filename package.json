@@ -4,6 +4,8 @@
   "description": "- Ter o Node instalado\r - Ter o nmp instalado (gerenciador de pacotes)",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
     "dev": "tsnd --cls --rs --ignore-watch=node_modules src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "test": "echo \"Error: no test specified\" && exit 1"

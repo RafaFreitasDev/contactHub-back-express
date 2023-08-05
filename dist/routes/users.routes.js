@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.userRoutes = void 0;
+const express_1 = require("express");
+const users_controllers_1 = require("../controllers/users.controllers");
+const ensureBodyIsValid_middleware_1 = require("../middlewares/ensureBodyIsValid.middleware");
+const user_schema_1 = require("../schemas/user.schema");
+const ensureEmailNotExists_middleware_1 = require("../middlewares/ensureEmailNotExists.middleware");
+const ensureTokenIsValid_middleware_1 = require("../middlewares/ensureTokenIsValid.middleware");
+const ensureIdExists_middleware_1 = require("../middlewares/ensureIdExists.middleware");
+const ensureIsOwnerAccount_middleware_1 = require("../middlewares/ensureIsOwnerAccount.middleware");
+exports.userRoutes = (0, express_1.Router)();
+exports.userRoutes.post("", (0, ensureBodyIsValid_middleware_1.ensureBodyIsValid)(user_schema_1.userSchemaRequest), ensureEmailNotExists_middleware_1.ensureEmailNotExists, users_controllers_1.createUsersController);
+exports.userRoutes.get("", ensureTokenIsValid_middleware_1.ensureTokenIsValid, users_controllers_1.listUsersController);
+exports.userRoutes.get("/logged", ensureTokenIsValid_middleware_1.ensureTokenIsValid, users_controllers_1.retrieveLoggedUserController);
+exports.userRoutes.patch("/:id", ensureTokenIsValid_middleware_1.ensureTokenIsValid, ensureIdExists_middleware_1.ensureIdExists, ensureIsOwnerAccount_middleware_1.ensureIsOwnerAccount, (0, ensureBodyIsValid_middleware_1.ensureBodyIsValid)(user_schema_1.userSchemaUpdate), ensureEmailNotExists_middleware_1.ensureEmailNotExists, users_controllers_1.updateUserController);
+exports.userRoutes.delete("/:id", ensureTokenIsValid_middleware_1.ensureTokenIsValid, ensureIdExists_middleware_1.ensureIdExists, ensureIsOwnerAccount_middleware_1.ensureIsOwnerAccount, users_controllers_1.deleteUsersController);

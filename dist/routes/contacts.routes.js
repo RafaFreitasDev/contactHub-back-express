@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.contactsRoutes = void 0;
+const ensureTokenIsValid_middleware_1 = require("./../middlewares/ensureTokenIsValid.middleware");
+const express_1 = require("express");
+const ensureBodyIsValid_middleware_1 = require("../middlewares/ensureBodyIsValid.middleware");
+const contact_schema_1 = require("../schemas/contact.schema");
+const contacts_controllers_1 = require("../controllers/contacts.controllers");
+const ensureIsObjectOwner_middleware_1 = require("../middlewares/ensureIsObjectOwner.middleware");
+exports.contactsRoutes = (0, express_1.Router)();
+exports.contactsRoutes.post("", ensureTokenIsValid_middleware_1.ensureTokenIsValid, (0, ensureBodyIsValid_middleware_1.ensureBodyIsValid)(contact_schema_1.contactSchemaRequest), contacts_controllers_1.createContactController);
+exports.contactsRoutes.get("", ensureTokenIsValid_middleware_1.ensureTokenIsValid, contacts_controllers_1.listContactsController);
+exports.contactsRoutes.get("/:id", ensureTokenIsValid_middleware_1.ensureTokenIsValid, contacts_controllers_1.retrieveContactController);
+exports.contactsRoutes.patch("/:id", ensureTokenIsValid_middleware_1.ensureTokenIsValid, ensureIsObjectOwner_middleware_1.ensureIsObjectOwner, contacts_controllers_1.updateContactController);
+exports.contactsRoutes.delete("/:id", ensureTokenIsValid_middleware_1.ensureTokenIsValid, ensureIsObjectOwner_middleware_1.ensureIsObjectOwner, contacts_controllers_1.deleteContactController);
