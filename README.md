@@ -7,6 +7,8 @@
 
 ## Informações
 
+- **DEPLOY URL:** `https://contacthub-express.onrender.com/`
+
 - Database: Banco de Dados em PostgreSQL (PSQL), sistema gerenciador de banco de dados relacional de código aberto, altamente confiável e escalável. Ele é amplamente utilizado em projetos web e aplicativos empresariais devido à sua capacidade de lidar com grandes volumes de dados e sua conformidade com os padrões SQL.
 
 - Arquivo .env: Existe um arquivo **.env.example** na pasta matriz do projeto com 2 variáveis de ambiente dentro dele:
